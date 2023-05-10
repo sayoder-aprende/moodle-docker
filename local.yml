@@ -1,0 +1,10 @@
+version: "2"
+services:
+  webserver:
+    volumes:
+      - "/var/www/moodledata:/var/www/moodledata"
+  db:
+    volumes:
+      - dbdata:/var/lib/mysql
+volumes:
+  dbdata:
