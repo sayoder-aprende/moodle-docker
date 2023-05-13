@@ -220,10 +220,11 @@ fi
 # Apply local customisations if a local.yml is found.
 # Note: This must be the final modification before the docker-compose command is called.
 localfile="${basedir}/local.yml"
-if [ -f "${localfile}" ]
-then
-  echo "Including local options from ${localfile}"
-  dockercompose="${dockercompose} -f ${localfile}"
+if [ -f "${localfile}" ]; then
+    if [[ ! -z "$MOODLE_DOCKER_QUIET" ]]; then
+        echo "Including local options from ${localfile}"
+    fi
+    dockercompose="${dockercompose} -f ${localfile}"
 fi
 
 $dockercompose "$@"
